@@ -23,12 +23,12 @@ def checkflag(pjp = project_prefix):
 def qsubjob(a = 0, pjn = Project_name):
 	dir_name = pjn + "%03d"%(a)
 	os.chdir(dir_name)
-	qsubjobcmd = subprocess.Popen(["echo", PBS_name])
+    qsubjobcmd = subprocess.Popen(["qsub", PBS_name])
 	qsubjobcmd.wait()
 	os.chdir("..")
 
 ###
-  
+
 
 ###主程序###########################################################
 if __name__ == '__main__':
