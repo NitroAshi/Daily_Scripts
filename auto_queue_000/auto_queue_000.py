@@ -25,7 +25,7 @@ def checkflag(pjp = Project_prefix):
 def qsubjob(a = 0, pjn = Project_name, node_init = 'node00'):
 	dir_name = pjn + "%03d"%(a)
 	os.chdir(dir_name)
-	qsubjobcmd = subprocess.Popen(["echo", PBS_name, "-l","nodes="+node_init+":ppn=16"])
+	qsubjobcmd = subprocess.Popen(["qsub", PBS_name, "-l","nodes="+node_init+":ppn=16"])
 	qsubjobcmd.wait()
 	os.chdir("..")
 
