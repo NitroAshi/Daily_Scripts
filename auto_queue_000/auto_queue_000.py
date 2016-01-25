@@ -11,6 +11,7 @@ job_stop = 94
 job_step = 2
 refresh_seconds = 5
 nodes = ["node32", "node31", "node39"]
+MAX_nodes = 2
 
 
 ###这段其实就是"qstat | grep XXXX | wc -l"###########################
@@ -49,9 +50,10 @@ if __name__ == '__main__':
 	i = job_start
 	while i < job_stop+job_step:
 		flag = checkflag(Project_prefix)
-		if flag < len(nodes):
+		if flag < MAX_nodes:
 			node = which_node_is_free(nodes)
 			qsubjob(i, Project_name, node)
+			time.sleep(10) #延迟,防止状态未刷新
 			i = i + job_step
 		else:
 			time.sleep(refresh_seconds)
